@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset = "UTF-8" />
+ <title>세번째 페이지</title>
+</head>
+<body>
+	<p>여기에도 춘식이 이미지를 표현해봅시다.</p>
+	<img src = "../images/춘식8.png"/>
+	<img src = "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fshop.phinf%2F20220726_228%2F1658767065264PmeRv_JPEG%2F750_6.jpg%22&type=nf340_228"/>
+	<p>첫번째 두번째 페이지로 이동할 수 있는<br />
+	하이퍼링크도 맹글어봅시다</p>
+	<a href = "/first/first.html">첫번째로~</a>
+	<a href = "../second.html">두번째로~</a>
+</body>
+</html>

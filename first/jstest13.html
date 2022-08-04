@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset = "utf-8" />
+    <title>Page title</title>
+ </head>
+ <body>
+    <!-- <button onclick="myListener()">눌러봐</button> -->
+    <button id = "mybtn">눌러봐</button>
+    <!-- 소통할 수 있는 객체를 만들어두는데 DOM(document object model)이라고 한다 -->
+    <input id = "mytext" value = "test 값" />
+    <button id ="printbtn">콘솔 출력하기</button>
+ </body>
+ <script>
+   function myListener(e) {
+      alert("왜 누르니?");
+      console.log(e);
+   }
+
+   // mybtn.onclick = myListener;
+   let elem = document.getElementById("mybtn");
+   // document에는 getElementById라는 메소드가 있는데 element라는 요소를 반환해준다
+   elem.addEventListener("click", myListener);
+   // 이 element라는 요소는 addEventListener라는 메소드가 있는데
+   // 이 메소드로 element에서 좌측에 있는 행동이 실행되면 우측에 있는 함수를 실행시켜준다
+   console.log(elem);
+
+   let inputText = document.getElementById("mytext");
+   elem.addEventListener("click", let =() => {console.log(inputText.value);})
+
+   let printbtn = document.getElementById("printbtn");
+   printbtn.addEventListener("click", function(e) { // mouseup이 클릭 떼어지는 거, mousedown이 클릭 누를 때
+      console.log(inputText.value);
+   })
+
+   // text 입력 요소, button 요소를 배치하고
+   // 사용자가 입력한 내용을 콘솔 출력하기 
+ </script>
+</html>

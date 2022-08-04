@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset = "utf-8" />
+    <title>Page title</title>
+ </head>
+ <body>
+    <p>방가방가</p>
+ </body>
+ <script>
+   let arrowFunc = (x) => {
+      console.log(x);
+   }
+
+   arrowFunc("test arrow");
+
+   let say = () => { // 파라미터가 없는 경우엔 빈 괄호
+      console.log("say");
+      return "반환값";
+   }
+
+   let result = say();
+   console.log(result);
+
+   let multiply = (a, b) => a * b; // 문장이 아니라 바로 연산식을 넣어도 그 값을 반환해준다
+   let m = multiply(10, 5);
+   console.log(m);
+ </script>
+</html>

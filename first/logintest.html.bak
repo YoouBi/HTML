@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+	
+	<meta charset = "UTF-8" />
+	<title>login test</title>
+	<style>
+		
+		.container {
+			width: 1200px;
+			margin: auto;
+		}
+		
+		#greentitle {
+			height: 20px;
+			margin: 70px;
+			text-align: center;
+			font-size: 40px;
+			color: #03c75a;
+		}
+		
+		.tab {
+		}
+		
+		.tabname {
+			border: 1px solid #cacaca;
+			border-bottom: none;
+		}
+		
+		.loginBox {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			border: 1px solid #cacaca;
+			border-top: none;
+			padding-top: 20px;
+			padding-bottom: 30px;
+		}
+		
+		.logininput { 
+			justify-content: center;
+			width: 400px;
+			padding: 15px 3px 15px 3px;
+			border: 1px solid #e0e0e0;
+		}
+		
+		.logininput input:focus {
+			border: 0.5px solid #fff;
+			outline: none;
+		}
+		
+		.top {
+			border-top-left-radius: 8px;
+			border-top-right-radius: 8px;
+			border-bottom: 0px;
+		}
+		
+		.bottom {
+			border-bottom-left-radius: 8px;
+			border-bottom-right-radius: 8px;
+		}
+		
+		.icon {
+			padding-left: 8px;
+			color: #e0e0e0;
+			font-size: 20px;
+		}
+		
+		.tab i {
+			color: #03c75a;
+		}
+		
+		.login {
+			border: 0px;
+			color: #e0e0e0;
+			font-size: 15px;
+		}
+		
+		.login::placeholder {
+			color: #cacaca;
+		}
+		
+		.loginnext {
+			height: 60px;
+			width: 410px;
+			padding-top: 10px;
+			align-items: left;
+			color: #787878;
+		}
+		
+		.button {
+			padding: 8px;
+			width: 410px;
+			background-color: #03c75a;
+			border: 1.3px solid #17b35c;
+			border-radius: 7px;
+			color: white;
+			font-size: 23px;
+		}
+	</style>
+	
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1 id = "greentitle" class="naverlogin">NAVER</h1>
+		</header>
+		<main>
+			<div class = "tab">
+				<label class= "tabname"><i class="xi-browser-text icon"></i> ID 로그인<label>
+				<label class= "tabname"><i class="xi-repeat-one icon"></i> 일회용 번호<label>
+				<label class= "tabname"><i class="xi-qr-code icon"></i> QR코드<label>
+			</div>
+			<div class = "loginBox">
+				<label class= "logininput top">
+					<i class="xi-profile-o icon"></i>
+					<input type="text" class="login" name="id" 
+						placeholder="아이디" />
+				</label>
+				<label class= "logininput bottom">
+					<i class="xi-lock-o icon"></i>
+					<input type="password" class="login" name="password" 
+						placeholder="비밀번호" />
+				</label>
+				<div class= "loginnext"><input type="checkbox" name="loginnext" value="로그인 유지"><label> 로그인 상태 유지</label></div>
+				<input type="submit" class="button" value="로그인" />
+			</div>
+		</main>
+	</div>
+</body>
+</html>

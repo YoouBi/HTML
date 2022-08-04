@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset = "utf-8" />
+    <title>Page title</title>
+ </head>
+ <body>
+    <p>방가방가</p>
+ </body>
+ <script>
+   function sum(a, b) {
+      if (a > b) {
+         return a + b;
+      } else {
+         return "b가 a보다 큽니다"; // return 타입 자체가 지정되어져 있지 않기 때문에
+         // 함수를 만들 때 이런 식으로 반환값의 타입이 나뉘어지는 함수는 작성하지 말자...
+      }
+   }
+
+   // function someFunc() {} // return 키워드가 없거나
+   function someFunc() { // return 값이 없어도 undefind
+      return;
+   }
+
+   let result = sum(30, 20);
+   console.log(result);
+
+   let someResult = someFunc();
+   console.log(someResult);
+ </script>
+</html>

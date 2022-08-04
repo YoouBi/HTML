@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset = "utf-8" />
+    <title>Page title</title>
+    <style>
+         .red {
+            color: red;
+         }
+    </style>
+ </head>
+ <body>
+    <button id = "move">이동하기</button>
+    <div id = "mydiv"></div>
+    <button id = "changebtn">텍스트값 변경하기</button>
+    <button id = "color">색깔 변경하기</button>
+ </body>
+ <script>
+   document.getElementById("move").addEventListener("click", function(e) {
+      if (confirm("네이버로 이동하시겠습니까?")) {
+         window.location.href = "http://www.naver.com"; // 페이지 이동 일어남
+      }
+   });
+
+   let mydiv = document.getElementById("mydiv");
+   let changebtn = document.getElementById("changebtn");
+   let colorbtn = document.getElementById("color");
+
+   colorbtn.addEventListener("click", function(e) {
+      // mydiv.style.color = "red";
+      mydiv.classList.toggle("red");
+   })
+
+   changebtn.addEventListener("click", function(e) {
+      // mydiv.innerText = "<strong>텍스트 값을 변경하였습니다.</strong>"; // textroad로 strong도 그냥 글자로 취급되어짐
+      mydiv.innerHTML = "<strong>텍스트 값을 변경하였습니다.</strong>"; // 아주아주 특별한 경우에는 주소 입력도 가능하지만 보통 주소는 간단하게 삭제 생성이 가능하니까 잘 안쓸 것이다
+   })
+ </script>
+</html>

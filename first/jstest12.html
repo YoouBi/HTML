@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset = "utf-8" />
+    <title>Page title</title>
+ </head>
+ <body>
+    <p>방가방가</p>
+ </body>
+ <script>
+   function eat(act) { // 파라미터에 함수를 전달받아도 동작이 가능하다
+      console.log("밥 먹구"); // 함수가 하나의 변수, 즉 객체로서 존재하기 때문에 객체를 전달하는 것과 똑같이 인식하는 것이다
+      act(); // 함수를 전달받아서 함수 안에서 함수를 호출하는 것
+   } // 함수 안에 파라미터로 전달받는 함수를 callback 함수라고 하는데 한번이 아니라 여러번도 된다
+
+   let sleep = function() {
+      console.log("잠 자기");
+   }
+
+   let study = function() {
+      alert("공부하기");
+   }
+
+   eat(sleep);
+   eat(study);
+
+   let anotherName = eat; // 함수를 호출한게 아니라 함수 이름만 불렀기 때문에 함수 객체이다
+   // eat 객체에 대한 다른 이름의 참조가 생긴 것
+   anotherName(sleep);
+ </script>
+</html>

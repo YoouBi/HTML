@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset = "utf-8" />
+    <title>Page title</title>
+ </head>
+ <body>
+    <p>방가방가</p>
+ </body>
+ <!-- html 주석은 이렇게 표시되지만 -->
+ <script>
+    var myInt = 10;
+    var myDouble = 33.44;
+    var zeroDivide = 0 / 0;
+    var myNan = NaN;
+
+    console.log(typeof myInt); // typeof는 어떤 타입인지 알려주는 연산자로 자바 스크립트에서 숫자 타입은 number이다
+    console.log(typeof myDouble);
+
+    console.log("0으로 나눈 값 : " + zeroDivide); // 일단 연산을 하는데 그 결과로 NaN라는 not a number라는 결과를 내놓는다
+    console.log(typeof zeroDivide); // 근데 숫자가 아니라고 했는데 타입은 숫자로 나왔다 왜일까??
+
+    var str = "hello?";
+    var notDef; // 동적으로 타이핑을 하는데 대입 연산이 이루어지지 않아도 타입이 undefind
+    var ref = null; // 'null' 참조의 타입은 하나의 타입으로써 '객체'로 되어있다
+
+    console.log(typeof str);
+    console.log(typeof notDef);
+    console.log(typeof ref);
+ </script>
+</html>

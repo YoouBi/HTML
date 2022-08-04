@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset = "utf-8" />
+    <title>Page title</title>
+ </head>
+ <body>
+    <p>방가방가</p>
+ </body>
+ <script>
+   // if ("asdfzxcv") { // 문자열도 넣을 수 있는데, 값이 있는 문자열은 참이고 값이 없는 문자열은 false다
+   // if ("0") { // 얘도 값이 있는 문자로 인식해서 참
+   // if ("") { // 아무것도 없는 문장은 거짓
+   // if (12) { // 근데 숫자를 넣었을 때 이런 값이 있는 숫자는 참이지만 0은 false다
+   // if ({}) { // 이런 식으로 객체를 참조했을 때에도 값이 null이 아니라면 참이다
+   // if ([]) { // 배열도...
+   // if (NaN) { // 얜 참조하는게 없으니까 거짓
+   // if (Infinity) { // 무한도 참
+   //    console.log("참임");
+   // } else {
+   //    console.log("거짓임");
+   // }
+
+   // let result = true ? "왼쪽" : "오른쪽"; // 삼항연산자도 된다!
+   // console.log(result);
+
+   // let nullish = null ?? "hello"; // 왼쪽에 있는 애가 널값이면 우측에 있는 값으로 대체됨
+   // console.log(nullish);
+
+   // console.log(true && true);
+   // console.log(false || true);
+
+   console.log("asdf" && "aaaa"); // 첫번째로 false로 판단되는 값을 반환한다
+   console.log("asdf" && "" && "bbbb"); // 따라서 첫번째가 참으로 인식되는 이 식에서는 두번째부터 거짓으로 치니까 ""이 반환될 것
+   console.log("asdf" && "cc" && "cccc"); // 여기서는 셋 다 true니까 가장 마지막껄 거짓으로 인식
+   console.log(undefined && "a" && "aaaa");
+   console.log(0 && 500);
+
+   console.log("asdf" || null);
+   console.log(0 || 500);
+   console.log(0 || null || false || "zxcv");
+
+   console.log(!"asdf");
+   console.log(!0);
+ </script>
+</html>
