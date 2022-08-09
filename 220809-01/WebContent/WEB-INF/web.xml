@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>220809-01</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 웹 어플리케이션을 구동할 때 톰 캣이 param 안에 있는 name과 value의 값을 짝지어서 구동해준다
+  	어플리케이션 전반에 사용되는 고유한 설정값을 이런식으로 설정할 수 있음
+  	ex)j...bc...? 드라이버 -->
+  <context-param>
+  	<param-name>myParamName</param-name>
+  	<param-value>myParamValue</param-value>
+  </context-param>
+  
+  <context-param>
+  	<param-name>mySetting</param-name>
+  	<param-value>hello</param-value>
+  </context-param>
+</web-app>
