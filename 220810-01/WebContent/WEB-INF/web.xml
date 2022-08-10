@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>220810-01</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 요청 처리 제어 흐름을 실행시킬 수 있게 만들어봄 -->
+  <servlet>
+  	<servlet-name>FirstServlet</servlet-name> <!-- 생성 이름은 아무렇게나 적어도 된다 -->
+  	<servlet-class>kr.co.greenart.CountryServlet</servlet-class> <!-- 만든 servlet의 위치와 이름을 적어주자 -->
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>FirstServlet</servlet-name> <!-- 위에 적은 이름 그대로 -->
+  	<url-pattern>/test</url-pattern> <!-- 어떤 주소에 대해서 동작할것인지 문자열로 적어주기 -->
+  </servlet-mapping>
+</web-app>

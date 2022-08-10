@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>대륙에 속한 나라와 인구수 찾기</title>
 </head>
 <body>
 	<%-- 사용자가 대륙을 선택할 수 있게 --%>
