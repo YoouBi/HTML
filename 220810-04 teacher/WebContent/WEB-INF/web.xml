@@ -13,9 +13,14 @@
   <servlet>
     <servlet-name>PersonServlet</servlet-name>
     <servlet-class>person.PersonServlet</servlet-class>
+    <init-param>
+    	<param-name>paramname1</param-name>
+    	<param-value>paramvalue1</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
   </servlet>
-  <servlet-mapping>
   
+  <servlet-mapping>
     <servlet-name>PersonServlet</servlet-name>
     <url-pattern>/addperson.do</url-pattern>
   </servlet-mapping>

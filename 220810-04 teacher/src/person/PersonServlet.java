@@ -11,9 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class PersonServlet extends HttpServlet {
-
+	// 요청 방식이 get이냐 post냐에 따라서
+	// protected void doGet 또는 doPost를 쓰기 때문에 service는 안씀
+	// 사실은 service로 가서 실행을 하는데, 직접 오버라이드 하지는 않는 것
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendRedirect(req.getContextPath() + "/form.jsp");
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 한글 깨짐 -> 값 전달 방식을 post로 바꾸고 set utf-8!
 		req.setCharacterEncoding("utf-8"); // 널 값일때는 톰캣이 정한 iso-88...영문자만 가능한 아스키코드
 		

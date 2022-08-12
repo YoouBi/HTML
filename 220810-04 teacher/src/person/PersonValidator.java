@@ -14,7 +14,8 @@ public class PersonValidator {
 		Matcher mf = p.matcher(firstname);
 		Matcher ml = p.matcher(lastname);
 		
-		if(firstname == null || lastname == null) {
+		if(firstname == null || firstname.length() == 0||
+				lastname == null || lastname.length() == 0) {
 			map.put("nameNull", "이름을 입력해주세요.");
 		} else {
 			if (firstname.contains(" ") || lastname.contains(" ")) {
@@ -46,7 +47,7 @@ public class PersonValidator {
 			} else {
 				try {
 					int num = Integer.valueOf(age);
-					if (15 < num && num < 115) {
+					if (15 > num || num > 115) {
 						map.put("ageRang", "나이의 범위는 15-115세입니다.");
 					}
 				} catch (NumberFormatException e) {
@@ -65,7 +66,7 @@ public class PersonValidator {
 		Pattern p = Pattern.compile("\\w+@\\w+.\\w+");
 		Matcher m = p.matcher(email);
 		
-		if(email == null) {
+		if(email == null || email.length() == 0) {
 			map.put("emailNull", "이메일을 입력해주세요.");
 		} else {	
 			if (email.contains(" ")) {
