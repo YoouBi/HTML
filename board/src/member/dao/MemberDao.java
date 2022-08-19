@@ -37,13 +37,13 @@ public class MemberDao {
 		return date == null ? null : new Date(date.getTime());
 	}
 	
-	public void insert(Connection conn, Member mem) throws SQLException {
+	public void insert(Connection conn, Member member) throws SQLException {
 		try (PreparedStatement pstmt = 
-				conn.prepareStatement("insert into member values(?,?,?,?)")) {
-			pstmt.setString(1, mem.getId());
-			pstmt.setString(2, mem.getName());
-			pstmt.setString(3, mem.getPassword());
-			pstmt.setTimestamp(4, new Timestamp(mem.getRegDate().getTime()));
+				conn.prepareStatement("insert into member values (?,?,?,?)")) {
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getPassword());
+			pstmt.setTimestamp(4, new Timestamp(member.getRegDate().getTime()));
 			pstmt.executeUpdate();
 		}
 	}
