@@ -27,7 +27,7 @@ public class LoginHandler implements CommandHandler {
 		String Id = req.getParameter("Id");
 		String Pwd = req.getParameter("Password");
 		
-		return null;
+		return FORM_VIEW;
 	}
 
 }
