@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+
+<!-- 슬 : DB랑 연결하기 위해 만들었음!  -->
+	<listener>
+		<listener-class>jdbc.DBCPInitListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>poolConfig</param-name>
+		<param-value>
+			jdbcdriver=com.mysql.jdbc.Driver
+			jdbcUrl=jdbc:mysql://192.168.0.95/MBC?characterEncoding=utf8
+			dbUser=ye3
+			dbPass=8569
+			validationQuery=select 1
+			minIdle=3
+			maxTotal=30
+			poolName=MBC
+		</param-value>
+	</context-param>
+
+	</web-app>
