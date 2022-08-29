@@ -7,17 +7,19 @@
 <title>데이터보내기</title>
 </head>
 <body>
-	<button id="checkJson">checkJson</button>
+	<button id="free">free</button>
 	<p id="output"></p>
+	
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 	$(function() {
-		$("#checkJson").on("click", function() {
+		$("#free").on("click", function() {
 			$.ajax({
 				url : "/MysteryBookClub/jsonServlet2", // 클라이언트가 요청을 보낼 서버의 URL 주소
 				type : "POST", // HTTP 요청 방식(GET, POST)
-				data: { openNum: 4 },   
+				data: {storyNum:1,
+						categoryNum:5},   
 				dataType : "json" // 서버에서 보내줄 데이터의 타입
 			}).done(function(json) {
 				alert("요청 성공");
@@ -35,7 +37,7 @@
 			});
 		});
 		function toBoard(article) {
-			$("#output").append(article.article_no + "<br>" + article.user_name + "<br>" + article.title + "<br>" + article.content + "<br>" + article.reg_date + "<br>" + article.mod_date + "<br>");
+			$("#output").append(article.article_no + "<br>" + article.user_name + "<br>" + article.title + "<br>" + article.content + "<br>" + article.record_time + "<br>");
 		}
 	});
 </script>

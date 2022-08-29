@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,6 +104,7 @@
 }
 
 .emphasis a:link {
+	margin: 0 0 0 7px;
 	text-decoration-line: none;
 }
 
@@ -111,35 +113,12 @@
 }
 
 .emphasis p:nth-child(4) {
-	width: 80px;
+	padding: 0 0 0 5px;
+	width: 90px;
 }
-
-.noticeList {
-	width: 770px;
-	height: 480px;
-}
-
-.pagebtn {
-	text-align: center;
-	padding: 0 110px 0 0;
-}
-
-.pagebtn a:link {
-	text-decoration-line: none;
-}
-
-.before {
-	color: #99bbe8;
-	font-weight: bold;
-}
-
-.after {
-	color: #99bbe8;
-	font-weight: bold;
-}
-
 
 /* /////////////////////////바꾼 css ////////////////////////////*/
+	
 	table {
 		border-top: 1px solid #b0c4de;
 		border-collapse: collapse;
@@ -162,6 +141,14 @@
 		text-align: left;
 	}
 	
+	td:nth-child(2) a {
+		color: black;
+	}
+	
+	td:nth-child(2) a:link {
+		text-decoration-line: none;
+	}
+	
 	td:nth-child(3) {
 		width: 95px;
 	}
@@ -170,14 +157,38 @@
 		width: auto;
 	}
 	
+	.emptyRow>td {
+		border-top: 1px solid #fff;
+	}
 
 /* ///////////////////////// 여기까지 바꾼 css ////////////////////////////*/
+
+.pagebtn {
+	text-align: center;
+	padding: 0 110px 0 0;
+}
+
+.pagebtn a:link {
+	text-decoration-line: none;
+}
+
+.before {
+	color: #99bbe8;
+	font-weight: bold;
+}
+
+.after {
+	color: #99bbe8;
+	font-weight: bold;
+}
+
 </style>
 </head>
 <body>
 	<div class="sectionBox">
-		<h1>자유게시판</h1>
+		<div class="titleName"><h1 id="titleh1">&nbsp;</h1></div>
 		<hr>
+		<div id="contentBox">
 		<div class="writebtn">
 			<button class="writebtn" onclick="location.href='write.do'">글쓰기</button>
 		</div>
@@ -189,122 +200,22 @@
 		</div>
 		<div class="emphasis">
 			<p>공지</p>
-			<a href="">공지 알려드립니다.</a>
-			<p>누구누구</p>
-			<p>무슨시간</p>
 		</div>
-		<div class="noticeList">
-			<c:if test="${ articlePage.hasNoArticles() }">
-			
+		
 		<!-- ////////////////////////////////////여기부터 테이블//////////////////////////////////////-->
-			
-				<table style="width: 770px; height: 480px">
-					<tr>
-						<td>12</td>
-						<td><a href="">게시글제목제목제목제목제목임</a></td>
-						<td>갓예슬</td>
-						<td>220826</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td><a href="">게시글제목제목제목제목제목제목제목제목임</a></td>
-						<td>갓예슬</td>
-						<td>220826</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td><a href="">게시글제목제목제목제목임</a></td>
-						<td>갓예슬</td>
-						<td>220826</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td><a href="">게시글제목제목제목임</a></td>
-						<td>김지연</td>
-						<td>220823</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td><a href="">제목 대충 적은거</a></td>
-						<td>킹효정</td>
-						<td>220821</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td><a href="">제목 대충 적은거</a></td>
-						<td>킹효정</td>
-						<td>220821</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td><a href="">제목 대충 적은거</a></td>
-						<td>킹효정</td>
-						<td>220821</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td><a href="">제목 대충 적은거</a></td>
-						<td>킹효정</td>
-						<td>220821</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td><a href="">제목 대충 적은거</a></td>
-						<td>킹효정</td>
-						<td>220821</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td><a href="">제목 대충 적은거</a></td>
-						<td>킹효정</td>
-						<td>220821</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td><a href="">제목 대충 적은거</a></td>
-						<td>킹효정</td>
-						<td>220821</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td><a href="">제목 대충 적은거</a></td>
-						<td>킹효정</td>
-						<td>220821</td>
-					</tr>
-				</table>
-				
-				
-				
+		<table id="articleList" style="width: 770px; height: 480px">
+			<tr>
+				<td></td>
+				<td>로딩중..</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
 <!-- ////////////////////////////////////여기까지 테이블//////////////////////////////////////-->
-			</c:if>
-			<c:forEach var="article" items="${ articlePage.content }">
-				<p class="number">${ article.number }</p>
-				<a
-					href="read.do?no=${ article.number }&pageNo=${ articlePage.currentPage }">
-					<c:out value="${ article.title }"></c:out>
-				</a>
-				<p>${ article.writer.name }</p>
-				<p>${ article.readTime }</p>
-			</c:forEach>
-		</div>
+		
 		<div class="pagebtn">
-			<c:if test="${ articlePage.startPage > 5 }">
-				<a href="list.do?pageNo=${ articlePage.startPage - 5 }"
-					class="before">이전</a>
-			</c:if>
-			<c:forEach var="pNo" begin="${ articlePage.startPage }"
-				end="${ articlePage.endPage }">
-				<c:if test="${ articlePage.hasNoArticles() }">
-						0
-				</c:if>
-				<c:if test="${ articlePage.hasArticles() }">
-					<a href="list.do?pageNo=${ pNo }"> [${ pNo }] </a>
-				</c:if>
-			</c:forEach>
-			<c:if test="${ articlePage.endPage < articlePage.totalPages }">
-				<a href="list.do?pageNo=${ articlePage.startPage + 5 }"
-					class="after">다음</a>
-			</c:if>
+			<p>&nbsp;</p>
+		</div>
 		</div>
 	</div>
 </body>
