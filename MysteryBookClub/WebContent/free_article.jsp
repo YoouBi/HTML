@@ -157,8 +157,9 @@
 		width: auto;
 	}
 	
-	.emptyRow>td {
-		border-top: 1px solid #fff;
+	.emptyRow table {
+		border-collapse: collapse;
+		border: none;
 	}
 
 /* ///////////////////////// 여기까지 바꾼 css ////////////////////////////*/
@@ -166,6 +167,15 @@
 .pagebtn {
 	text-align: center;
 	padding: 0 110px 0 0;
+}
+
+.pagebtn a {
+	color: black;
+	margin: 0 5px 0 0;
+}
+
+.pagebtn a:last-child {
+	margin: 0 -5px 0 0;
 }
 
 .pagebtn a:link {
@@ -189,33 +199,33 @@
 		<div class="titleName"><h1 id="titleh1">&nbsp;</h1></div>
 		<hr>
 		<div id="contentBox">
-		<div class="writebtn">
-			<button class="writebtn" onclick="location.href='write.do'">글쓰기</button>
-		</div>
-		<div class="calum">
-			<p>글번호</p>
-			<p>제목</p>
-			<p>작성자</p>
-			<p>작성날짜</p>
-		</div>
-		<div class="emphasis">
-			<p>공지</p>
-		</div>
+			<div class="writebtn">
+				<button class="writebtn" onclick="location.href='write.do'">글쓰기</button>
+			</div>
+			<div class="calum">
+				<p>글번호</p>
+				<p>제목</p>
+				<p>작성자</p>
+				<p>작성날짜</p>
+			</div>
+			<div class="emphasis">
+				<p>공지</p>
+			</div>
 		
 		<!-- ////////////////////////////////////여기부터 테이블//////////////////////////////////////-->
-		<table id="articleList" style="width: 770px; height: 480px">
-			<tr>
-				<td></td>
-				<td>로딩중..</td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
+			<table id="articleList" style="width: 770px; height: 480px">
+				<tr>
+					<td></td>
+					<td>로딩중..</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
 <!-- ////////////////////////////////////여기까지 테이블//////////////////////////////////////-->
 		
-		<div class="pagebtn">
+			<div class="pagebtn">
 			<p>&nbsp;</p>
-		</div>
+			</div>
 		</div>
 	</div>
 </body>

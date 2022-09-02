@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,16 +212,16 @@ section {
 			</div>
 			<hr>
 			<div>
-				<a href="#" id="weekBtn" class="loadArticleBtn" type="3">주간도서</a>
+				<a href="#" class="loadArticleBtn" type="3">주간도서</a>
 			</div>
 			<div>
-				<a href="#" id="helloBtn" class="loadArticleBtn" type="4">가입인사</a>
+				<a href="#" class="loadArticleBtn" type="4">가입인사</a>
 			</div>
 			<div>
-				<a href="#" id="freeBtn" class="loadArticleBtn" type="5">자유게시판</a>
+				<a href="#" class="loadArticleBtn" type="5">자유게시판</a>
 			</div>
 			<div>
-				<a href="#" id="meetBtn" class="loadArticleBtn" type="6">우리 모여요!</a>
+				<a href="#" class="loadArticleBtn" type="6">우리 모여요!</a>
 			</div>
 			<hr>
 			<!-- <form action="#"> -->
@@ -253,7 +254,10 @@ section {
 			type : "POST", // HTTP 요청 방식(GET, POST)
 			data: {"contentinfo":$(e).attr("type")}
 		}).done(function(json) {
-			//console.log(json);
+			console.log(json);
+			if(json.category == 2) {
+				$("#titleName").html("<h1 id='titleh1'>공지사항</h1>");
+			}
 			$("#contentBox").load("content.jsp", json);
 		}).fail(function() {
 			alert("요청 실패");
@@ -261,47 +265,21 @@ section {
 	}
 	
 	$(function() {
-		var storyNum = 2; //임의설정 <- user정보에 있는거 넘겨받으면 됨!
-		var storyNumRefresh = 1;
+		var storyNum = 3; //임의설정 <- user정보에 있는거 넘겨받으면 됨!
+		var storyNumRefresh = 8;
 		var categoryNum = 0;
 		var refresh = null;
 		//게시글 불러오기 함수
 		function loadArticle(category) { //게시판가는 버튼마다 attribute type값으로 categoryNum지정해놨음
 			if(category.attr("type") !== "0") {
+				console.log("누른 거 아냐?" + category.attr("type"));
 				categoryNum = category.attr("type");//버튼 누른 애 특정하기
 				refresh = "off";
 			} else {
-				var titleText = $("#titleh1").text();
-				//categoryNum = json.parse("categoryNum");
+				var titleText = json.categoryText;
 				refresh = "on";
-				if (titleText === "내 글 보기") {
-					categoryNum = "1";
-				} else if(titleText === "주간 도서") {
-					categoryNum = "3";
-				} else if(titleText === "가입 인사") {
-					categoryNum = "4";
-				} else if(titleText === "자유 게시판") {
-					categoryNum = "5";
-				} else if(titleText === "우리 모여요!") {
-					categoryNum = "6";
-				}
 			}
 		
-			var title = "<h1 id='titleh1'>";
-			if(categoryNum === "1") {
-				title += "내 글 보기";
-			} else if (categoryNum === "3") {
-				title += "주간 도서";
-			} else if (categoryNum === "4") {
-				title += "가입 인사";
-			} else if (categoryNum === "5") {
-				title += "자유 게시판";
-			} else if (categoryNum === "6") {
-				title += "우리 모여요!";
-			}
-			title += "</h1>";
-			
-			console.log(title);
 			//console.log(storyNum);
 			 $.ajax({ 
 					url : "/MysteryBookClub/getArticle", // 클라이언트가 요청을 보낼 서버의 URL 주소
@@ -314,29 +292,37 @@ section {
 				}).done(function(json) {
 					//let jsonObj = JSON.parse(json);
 					
-					//console.log(document.getElementById("articleList").innerHTML);
+					console.log(json);
+					const searchParams = new URLSearchParams(location.search); //파라미터 값만 가져오기
 					
+					console.log(json.currentPage + "currentPage");
+					console.log(json.startPage > 5);
+					console.log(json.noticeArticle.title + "일단 var추가");
 					 if (json != null) {
-						var empLine = "<p>공지</p><a onclick='showcontent(this)' type='" + 999 
-						+ "/" + json.result[0].article_no + "/" + json.result[0].title
-						+ "/"+ json.result[0].user_name + "/" + json.result[0].record_date 
-						+ "/" + json.result[0].record_time + "' href='#' class='content'>" 
-						+ json.result[0].title + "</a><p>"
-							+ json.result[0].user_name + "</p><p>" + json.result[0].record_date + "</p>";
+						// 타이틀 텍스트부터 배치
+						var title = "<h1 id='titleh1'>" + json.categoryText + "</h1>";
+						$(".titleName").html(title);
+						 
+						var empLine = "<p>공지</p><a onclick='showcontent(this)' type='" + 2 
+						+ "/" + json.noticeArticle.article_no + "/" + json.noticeArticle.title
+						+ "/"+ json.noticeArticle.user_name + "/" + json.noticeArticle.record_date 
+						+ "/" + json.noticeArticle.record_time + "' href='#' class='content'>" 
+						+ json.noticeArticle.title + "</a><p>"
+							+ json.noticeArticle.user_name + "</p><p>" + json.noticeArticle.record_date + "</p>";
 						$(".emphasis").html(empLine);
 						
 						var line = "";
-						var blankSize = 11 - json.result.length; //한페이지 게시글 11개 기준으로 설정함
+						var blankSize = 11 - json.content.length; //한페이지 게시글 11개 기준으로 설정함
 						//console.log(blankSize);
-						for (var k = 1; k < json.result.length; k++) {
-							line += "<tr><td>" + json.result[k].article_no
+						for (var k = 0; k < json.content.length; k++) {
+							line += "<tr><td>" + json.content[k].article_no
 						    + "</td><td><a onclick='showcontent(this)' type='" + categoryNum + "/" 
-						    + json.result[k].article_no + "/" + json.result[k].title
-						    + "/"+ json.result[k].user_name + "/" +json.result[k].record_date 
-						    + "/" + json.result[k].record_time + "' href='#' class='content'>" 
-						    + json.result[k].title 
-						    + "</a></td><td>" + json.result[k].user_name 
-						    + "</td><td>" + json.result[k].record_date + "</td></tr>";
+						    + json.content[k].article_no + "/" + json.content[k].title
+						    + "/"+ json.content[k].user_name + "/" + json.content[k].record_date 
+						    + "/" + json.content[k].record_time + "' href='#' class='content'>" 
+						    + json.content[k].title 
+						    + "</a></td><td>" + json.content[k].user_name 
+						    + "</td><td>" + json.content[k].record_date + "</td></tr>";
 						}
 						
 						//없는 게시글
@@ -344,21 +330,31 @@ section {
 							line += "<div class='emptyRow'><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></div>";
 						}
 						
-						var line2 = "<c:if test='${ articlePage.startPage > 5 }'>"
-							+ "<a href='list.do?pageNo=${ articlePage.startPage - 5 }' class='before'>이전</a></c:if>"
-							+ "<c:forEach var='pNo' begin='${ articlePage.startPage }' end='${ articlePage.endPage }'>"
-							+ "<c:if test='${ articlePage.hasArticles() }'><a href='list.do?pageNo=${ pNo }'> [${ pNo }] </a></c:if>"
-							+ "</c:forEach>"
-						 	+ "<c:if test='${ articlePage.endPage < articlePage.totalPages }'>"
-							+ "<a href='list.do?pageNo=${ articlePage.startPage + 5 }' class='after'>다음</a></c:if>";
+						var line2 = "";
+						//페이징 처리 할 페이지 버튼 박스
+						if(json.startPage > 5) {
+							line2 += "<a href='#'>이전</a>";
+						} else {
+							for (var i = json.startPage; i <= json.endPage; i++) {
+								line2 += "<a href='#' class='loadArticleBtn type='" + categoryNum + "' " ;
+								if(i == json.currentPage) {
+									line2 +="style='color:#99BBE7; font-weight:bold;'";
+								}
+								line2 += ">" + i + "</a>";
+							}
+							if(json.endPage < json.totalPages) {
+								line2 += "<a href='#'>다음</a>";
+							}
+						}
 						
-						$(".titleName").html(title);
 						$("#articleList").html(line);
+						//$(".pagebtn").html("<p>되는거 맞니</p>");
 						$(".pagebtn").html(line2); //게시글 11개 이하일때 조건 줘야함
 					} else { //이건 게시물 하나도 없을때.. 나중에 db채우고 나면 지워도됨
 						var line = "";
 						for (var i = 0; i < 11; i++) {
-							line += "<div class='emptyRow'><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></div>";
+							line += "<div class='emptyRow'><tr><td>&nbsp;</td><td>&nbsp;</td>"
+							+ "<td>&nbsp;</td><td>&nbsp;</td></tr></div>";
 						}
 						$(".titleName").html(title);
 						$("#articleList").html(line);
@@ -371,10 +367,12 @@ section {
 		// 지연 - 게시판이동 
 		//효정 - 이동하고서 게시글 불러오기 by함수
 		$(".loadArticleBtn").on("click", function() {
-			$("#box").load("free_article.jsp");
-			loadArticle($(this));
+			var k = $(this);
+			$("#box").load("free_article.jsp", function() {
+				loadArticle(k);
+			});
 		});
-		//영빈 - 새로고침 ajax
+		// 영빈 - 새로고침 ajax
 		
 		//효정 - 책검색하기위한 코드
 		$("#searchStart").on("click", function() {
@@ -456,7 +454,6 @@ section {
 			time--;
 		}, 1000);
 	});
-	
 	
 	bgmOnOff.onclick = function() {
 		let onoff = bgmOnOff.value;

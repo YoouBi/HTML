@@ -7,14 +7,17 @@ import article.model.Article;
 public class ArticlePage {
 	private int total;
 	private int currentPage;
-	private List<Article> content;
+	private Article noticeArticle; // 최신 공지글
+	private String categoryText;
+	private List<Article> content; // 각 게시판의 리스트
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 	
-	public ArticlePage(int total, int currentPage, int size, List<Article> content) {
+	public ArticlePage(int total, int currentPage, int size, Article noticeArticle, List<Article> content) {
 		this.total = total;
 		this.currentPage = currentPage;
+		this.noticeArticle = noticeArticle;
 		this.content = content;
 		if(total == 0) {
 			totalPages = 0;
@@ -31,6 +34,29 @@ public class ArticlePage {
 			
 			endPage = startPage +4;
 			if(endPage > totalPages) endPage = totalPages;
+		}
+		int categoryNum = content.get(0).getCategory();
+		switch (categoryNum) {
+		case 1:
+			categoryText = "내 글 보기";
+			break;
+		case 2:
+			categoryText = "공지사항";
+			break;
+		case 3:
+			categoryText = "주간도서";
+			break;
+		case 4:
+			categoryText = "가입인사";
+			break;
+		case 5:
+			categoryText = "자유게시판";
+			break;
+		case 6:
+			categoryText = "우리 모여요!";
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -54,6 +80,22 @@ public class ArticlePage {
 		return totalPages;
 	}
 	
+	public Article getNoticeArticle() {
+		return noticeArticle;
+	}
+
+	public void setNoticeArticle(Article noticeArticle) {
+		this.noticeArticle = noticeArticle;
+	}
+	
+	public String getCategoryText() {
+		return categoryText;
+	}
+
+	public void setCategoryText(String categoryText) {
+		this.categoryText = categoryText;
+	}
+
 	public List<Article> getContent() {
 		return content;
 	}

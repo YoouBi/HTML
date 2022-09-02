@@ -2,6 +2,7 @@ package article.model;
 import java.util.Date;
 
 public class Article {
+	private int category;//추가
 	private int article_no;
 	private String user_name;
 	private String title;
@@ -11,23 +12,43 @@ public class Article {
 	
 	public Article() {}
 	
-	public Article(int article_no, String user_name, String title, String record_date, String record_time) {
+	//공지용 생성자
+	public Article(int article_no, String title) {
+		this.category = 2;
+		this.article_no = article_no;
+		this.user_name = "avanger";
+		this.title = title;
+	}
+	
+	public Article(int category, int article_no, String user_name, String title, String record_date,
+			String record_time) {
 		super();
+		this.category = category;
 		this.article_no = article_no;
 		this.user_name = user_name;
 		this.title = title;
 		this.record_date = record_date;
 		this.record_time = record_time;
 	}
-	
-	public Article(int article_no, String user_name, String title, String content, String record_date, String record_time) {
+
+	public Article(int category, int article_no, String user_name, String title, String content, String record_date,
+			String record_time) {
 		super();
+		this.category = category;
 		this.article_no = article_no;
 		this.user_name = user_name;
 		this.title = title;
 		this.content = content;
 		this.record_date = record_date;
 		this.record_time = record_time;
+	}
+
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
 	}
 
 	public int getArticle_no() {
